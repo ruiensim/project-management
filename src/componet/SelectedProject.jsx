@@ -1,12 +1,15 @@
 import Task from "./Task";
 
 export function SelectedProject({project,handleDelete,addTask,deleteTask,task}){
+
+    let projecttask = task.filter(x => x.projectId === project.id);
+
     const formattedDate = new Date(project.date).toLocaleDateString('en-US',{
         year: 'numeric',
         month: 'short',
         day: 'numeric'
     })
-    console.log(formattedDate);
+
     return(
     <div className="w-[35rem] mt-16">
     <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -17,7 +20,7 @@ export function SelectedProject({project,handleDelete,addTask,deleteTask,task}){
             <p className="mb-4 text-stone-400">{formattedDate}</p>
             <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
     </header>
-    <Task task= {task} addTask={addTask} deleteTask={deleteTask}/>
+    <Task task= {projecttask} addTask={addTask} deleteTask={deleteTask}/>
     </div>
     )
 }
